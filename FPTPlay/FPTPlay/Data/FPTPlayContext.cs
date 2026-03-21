@@ -1,0 +1,13 @@
+﻿using Microsoft.EntityFrameworkCore;
+using FPTPlay.Models;
+
+namespace FPTPlay.Data
+{
+    public class FPTPlayContext : DbContext
+    {
+        public FPTPlayContext(DbContextOptions<FPTPlayContext> options) : base(options) { }
+
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<Category> Categories { get; set; }
+    }
+}
