@@ -1,0 +1,69 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <div class="nav-item dropdown">
+
+        <!-- Avatar -->
+        <img src="@(User.FindFirst("Avatar")?.Value ?? "/images/avatar-default.png")"
+             class="rounded-circle dropdown-toggle"
+             style="width:36px;height:36px;cursor:pointer"
+             data-bs-toggle="dropdown" />
+
+        <!-- Menu -->
+        <ul class="dropdown-menu dropdown-menu-end shadow">
+
+            <li class="px-3 py-2 small text-muted">
+                👋 @User.Identity.Name
+            </li>
+
+            <li><hr class="dropdown-divider"></li>
+
+            @if (User.IsInRole("Admin"))
+            {
+                <li>
+                    <a class="dropdown-item"
+                       asp-area="Admin"
+                       asp-controller="Dashboard"
+                       asp-action="Index">
+                        <i class="bi bi-speedometer2"></i> Admin Panel
+                    </a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+            }
+
+            <li>
+                <a class="dropdown-item"
+                   asp-controller="Account"
+                   asp-action="Profile">
+                    <i class="bi bi-person"></i> Thông tin tài khoản
+                </a>
+            </li>
+
+            <li>
+                <a class="dropdown-item"
+                   asp-controller="Account"
+                   asp-action="ChangePassword">
+                    <i class="bi bi-key"></i> Đổi mật khẩu
+                </a>
+            </li>
+
+            <li><hr class="dropdown-divider"></li>
+
+            <li>
+                <a class="dropdown-item text-danger"
+                   asp-controller="Account"
+                   asp-action="Logout">
+                    <i class="bi bi-box-arrow-right"></i> Đăng xuất
+                </a>
+            </li>
+
+        </ul>
+    </div>
+}
+else
+{
+    <a href="/Account/Login"
+       class="btn btn-outline-light btn-sm px-3"
+       onclick="openLogin(); return false;">
+        Đăng nhập
+    </a>
+}

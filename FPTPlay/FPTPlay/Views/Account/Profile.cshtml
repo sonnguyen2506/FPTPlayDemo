@@ -1,0 +1,65 @@
+﻿@model FPTPlay.Models.User
+
+@{
+    ViewData["Title"] = "Thông tin cá nhân";
+}
+
+<div class="container mt-4" style="max-width:600px;">
+    <h3 class="mb-4">Thông tin tài khoản</h3>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    <!-- Avatar -->
+    <div class="text-center mb-4">
+        <img src="@(Model.AvatarUrl ?? "/images/default-avatar.png")"
+             style="width:120px;height:120px;border-radius:50%;object-fit:cover;" />
+
+        <form asp-action="UploadAvatar" method="post" enctype="multipart/form-data" class="mt-3">
+            <input type="file" name="avatar" class="form-control mb-2" />
+            <button class="btn btn-sm btn-outline-primary">Upload Avatar</button>
+        </form>
+    </div>
+
+    <!-- Form update -->
+    <form asp-action="Profile" method="post">
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label class="form-label">Số điện thoại</label>
+            <input asp-for="Mobile" class="form-control" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Họ tên</label>
+            <input asp-for="FullName" class="form-control" />
+            <span asp-validation-for="FullName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Vai trò</label>
+            <input value="@Model.Role" class="form-control" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Trạng thái</label>
+            <input value="@(Model.IsActive ? "Đang hoạt động" : "Bị khóa")"
+                   class="form-control" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Ngày tạo</label>
+            <input value="@Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")"
+                   class="form-control" readonly />
+        </div>
+
+        <button class="btn btn-danger w-100">Cập nhật</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,89 @@
+﻿@model FPTPlay.Admin.Models.DashboardVM
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <h2 class="mb-4">📊 Dashboard</h2>
+
+    <!-- ===== USER STATS ===== -->
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="card shadow-sm text-center p-3">
+                <h6>👤 Tổng Users</h6>
+                <h3>@Model.TotalUsers</h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm text-center p-3">
+                <h6>✅ User hoạt động</h6>
+                <h3 class="text-success">@Model.TotalLogingUsers</h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm text-center p-3">
+                <h6>⛔ User bị khóa</h6>
+                <h3 class="text-danger">@Model.TotalInactiveUsers</h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm text-center p-3">
+                <h6>🆕 Đăng ký hôm nay</h6>
+                <h3 class="text-primary">@Model.TodayRegisterdUser</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== MOVIE STATS ===== -->
+    <div class="row mt-4">
+
+        <div class="col-md-3">
+            <div class="card shadow-sm text-center p-3">
+                <h6>🎬 Tổng phim</h6>
+                <h3>@Model.TotalMovies</h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm text-center p-3">
+                <h6>🔥 Phim mới tuần</h6>
+                <h3 class="text-warning">@Model.TotaNewReleasedThisWeek</h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm text-center p-3">
+                <h6>🏆 Top 10 phổ biến</h6>
+                <h3 class="text-info">@Model.Top10ViewedMovies</h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm text-center p-3">
+                <h6>➕ Phim hôm nay</h6>
+                <h3>@Model.TodayCreatedMovies</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== VIEW STATS ===== -->
+    <div class="row mt-4">
+
+        <div class="col-md-12">
+            <div class="card shadow-sm text-center p-4">
+                <h5>👀 Lượt xem hôm nay</h5>
+                <h2 class="text-danger">@Model.TodayViewedCount</h2>
+            </div>
+        </div>
+
+    </div>
+
+</div>

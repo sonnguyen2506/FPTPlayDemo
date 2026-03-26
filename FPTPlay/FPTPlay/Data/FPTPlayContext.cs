@@ -7,7 +7,9 @@ namespace FPTPlay.Data
     {
         public FPTPlayContext(DbContextOptions<FPTPlayContext> options) : base(options) { }
 
-        public DbSet<Movie> Movies { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Movie> Movies { get; set; }        
+
+        public DbSet<User> Users { get; set; }
     }
 }
